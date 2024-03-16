@@ -1,5 +1,6 @@
 const CartModel = requiere("../models/cart.model.js");
 
+
 class CartManager {
 
     async crearCarrito() {
@@ -57,4 +58,4 @@ class CartManager {
 
 }
 
-export default CartManager; // Exportar clase como default
+module.exports = CartManager;
