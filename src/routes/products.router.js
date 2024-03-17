@@ -35,7 +35,7 @@ router.get("/:pid", async (req, res) => {
     } catch (error) {
         console.error("error al obtener producto", error);
         res.status(500).json({
-            error: "Error interno del servidor"
+            error: "Error interno del servidor al buscar producto por ID"
         });
     }
 })

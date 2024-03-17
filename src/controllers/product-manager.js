@@ -48,7 +48,7 @@ class ProductManager {
         }
     }
 
-    async getProducById(id) {
+    async getProductById(id) {
         try {
             const producto = await ProductModel.findById(id);
 
