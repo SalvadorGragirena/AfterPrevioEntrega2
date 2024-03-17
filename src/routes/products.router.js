@@ -73,4 +73,21 @@ router.delete("/:pid", async (req, res) => {
     }
 });
 
+router.post("/", async (req, res) => {
+    const nuevoProducto = req.body;
+
+    try {
+        await productManager.addProduct(nuevoProducto);
+        res.status(201).json({
+            message: "Producto agregado con éxito"
+        });
+    } catch (error) {
+        console.error("Error al agregar producto", error);
+        res.status(500).json({
+            error: "Error interno del servidor"
+        });
+    }
+})
+
+
 module.exports = router;

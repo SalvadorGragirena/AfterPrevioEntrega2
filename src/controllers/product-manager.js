@@ -18,7 +18,7 @@ class ProductManager {
                 return;
             }
 
-            const newProduct = {
+            const newProduct = new ProductModel ({
                 title,
                 description,
                 price,
@@ -28,9 +28,10 @@ class ProductManager {
                 category,
                 status: true,
                 thumbnails: thumbnails || []
-            };
+            });
 
             await newProduct.save();
+            console.log(newProduct);
 
         } catch (error) {
             console.log("Error al agregar producto", error);
