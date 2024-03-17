@@ -10,19 +10,19 @@ const productSchema = new mongoose.Schema({
         required: true
     },
     price: {
-        type: number,
+        type: Number,
         required: true
     },
     img: {
         type: String
     },
     code: {
-        type: string,
+        type: String,
         required: true,
         unique: true
     },
     category: {
-        type: string,
+        type: String,
         required: true
     },
     status: {
@@ -30,7 +30,7 @@ const productSchema = new mongoose.Schema({
         required: true
     },
     thumbnails: {
-        type: [string]
+        type: [String]
     }
 })
 

@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const ProductManager = require("../controllers/product-manager.js");
-const productManager = ProductManager();
+const productManager = new ProductManager();
 
 router.get("/", async (req, res) => {
     try {
         const limit = req.query.limit;
         const productos = await productManager.getProducts();
-        if (limit) { 
+        if (limit) {
             res.json(productos.slice(0, limit));
         } else {
             res.json(productos);
@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
     }   catch (error) {
         console.error("Error al obtener productos", error);
         res.status(500).json({
-            error: "Error interno del servidor"
+            error: "Error interno del servidor hola"
         });
     }
 })

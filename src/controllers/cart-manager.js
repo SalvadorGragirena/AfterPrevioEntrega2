@@ -5,7 +5,7 @@ class CartManager {
     async crearCarrito() {
         try {
 
-            const nuevoCarrito = new CartModel({ product: []});
+            const nuevoCarrito = new CartModel({ products: []});
             await nuevoCarrito.save();
             return nuevoCarrito;
 
@@ -26,7 +26,6 @@ class CartManager {
             }
 
             return carrito;
-
         } catch (error) {
             console.error("Error al obtener al carrito por ID", error);
             throw error;
