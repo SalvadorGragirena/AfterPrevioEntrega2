@@ -1,23 +1,23 @@
 const ProductModel = require("../models/product.model.js");
 
-class ProductManager { 
+class ProductManager {
 
     async addProduct({ title, description, price, img, code, stock, category, thumbnails }) {
 
         try {
-            
+
             if (!title || !description || !price || !code || !stock || !category) {
                 console.log("Todos los campos son obligatorios");
                 return;
             }
 
-            const existeProducto = await ProductModel.findOne({code:code})
-            
-            if(existeProducto) {
+            const existeProducto = await ProductModel.findOne({ code: code })
+
+            if (existeProducto) {
                 console.log("El código debe ser único");
                 return;
             }
-            
+
             const newProduct = {
                 title,
                 description,
@@ -32,7 +32,7 @@ class ProductManager {
 
             await newProduct.save();
 
-        } catch(error) {
+        } catch (error) {
             console.log("Error al agregar producto", error);
             throw error;
         }
@@ -49,10 +49,10 @@ class ProductManager {
     }
 
     async getProducById(id) {
-        try { 
+        try {
             const producto = await ProductModel.findById(id);
 
-            if(!producto) {
+            if (!producto) {
                 console.log("Producto no encontrado");
                 return null;
             } else {
@@ -65,39 +65,39 @@ class ProductManager {
         }
     }
 
-async updateProduct(id, productoActualizado) {
-    try {
-        const updateProduct = await ProductModel.findByIdAndUpdate(id, productoActualizado);
-        if(!updateProduct) {
-            console.log("Producto no encontrado");
-            return null;
+    async updateProduct(id, productoActualizado) {
+        try {
+            const updateProduct = await ProductModel.findByIdAndUpdate(id, productoActualizado);
+            if (!updateProduct) {
+                console.log("Producto no encontrado");
+                return null;
+            }
+
+            console.log("Producto actulizado");
+            return updateProduct;
+        } catch (error) {
+            console.log("Error al actualizar el producto", error);
+            throw error;
         }
-
-        console.log("Producto actulizado");
-        return updateProduct;
-    } catch (error) {
-        console.log("Error al actualizar el producto", error);
-        throw error;
-    }   
-}
-
-async deleteProduct(id) { 
-    try { 
-
-        const deleteProduct = await ProductModel.findByIdAndUpdate(id);
-        
-        if (!deleteProduct) {
-            console.log("Producto no encontrado");
-            return null;
-        }
-
-        console.log("Producto eliminado");
-    
-    } catch (error) {
-        console.log("Error al eliminar producto", error)
-        throw error;
     }
-}
+
+    async deleteProduct(id) {
+        try {
+
+            const deleteProduct = await ProductModel.findByIdAndUpdate(id);
+
+            if (!deleteProduct) {
+                console.log("Producto no encontrado");
+                return null;
+            }
+
+            console.log("Producto eliminado");
+
+        } catch (error) {
+            console.log("Error al eliminar producto", error)
+            throw error;
+        }
+    }
 
 }
 

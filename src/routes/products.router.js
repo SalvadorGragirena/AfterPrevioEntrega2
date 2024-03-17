@@ -1,13 +1,12 @@
 const express = require("express");
 const router = express.Router();
-
 const ProductManager = require("../controllers/product-manager.js");
-const ProductManager = new ProductManager();
+const productManager = ProductManager();
 
 router.get("/", async (req, res) => {
     try {
         const limit = req.query.limit;
-        const productos = await ProductManager.getProducts();
+        const productos = await productManager.getProducts();
         if (limit) { 
             res.json(productos.slice(0, limit));
         } else {
@@ -25,7 +24,7 @@ router.get("/:pid", async (req, res) => {
     const id = req.params.pid;
 
     try {
-        const producto = await ProductManager.getProductById(id);
+        const producto = await productManager.getProductById(id);
         if (!producto) {
             return res.json({
                 error: "Producto no encontrado"
@@ -46,7 +45,7 @@ router.put("/:pid", async (req,res) => {
     const productoActualizado = req.body;
 
     try{
-        await ProductManager.updateProduct((id), productoActualizado);
+        await productManager.updateProduct((id), productoActualizado);
         res.json({
             message: "Producto actualizado exitoamente"
         });
@@ -62,7 +61,7 @@ router.delete("/:pid", async (req, res) => {
     const id = req.params.pid;
 
     try {
-        await ProductManager.deleteProduct(id);
+        await productManager.deleteProduct(id);
         res.json({
             message: "Producto eliminado exitosamente"
         });

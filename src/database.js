@@ -1,4 +1,4 @@
-const mongoose = requiere("mongoose");
+const mongoose = require("mongoose");
 
 mongoose.connect("mongodb+srv://salvador:Chouse@cluster0.owqsy0n.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0")
     .then(() => console.log("conexión exitosa"))
