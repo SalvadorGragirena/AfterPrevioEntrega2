@@ -31,11 +31,11 @@ router.post("/:cid/product/:pid", async (req, res) => {
     const quantity = req.body.quantity || 1;
 
     try {
-        const actualizarCarrito = await cartManager.agregarProductoAlCarrito(cartId);
+        const actualizarCarrito = await cartManager.agregarProductoAlCarrito(cartId,req.params.pid);
         res.json(carrito.products);
     } catch (error) {
         console.error("Error al obtener el carrito", error);
-        res.status(500).json({ error: "Error interno del servidor" });
+        res.status(500).json({ error: "Error interno del servidor al w" });
     }
 });
 
