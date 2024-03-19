@@ -32,7 +32,7 @@ router.post("/:cid/product/:pid", async (req, res) => {
 
     try {
         const actualizarCarrito = await cartManager.agregarProductoAlCarrito(cartId,req.params.pid);
-        res.json(carrito.products);
+        res.json(actualizarCarrito);
     } catch (error) {
         console.error("Error al obtener el carrito", error);
         res.status(500).json({ error: "Error interno del servidor al w" });

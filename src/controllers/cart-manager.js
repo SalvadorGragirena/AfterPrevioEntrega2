@@ -19,7 +19,7 @@ class CartManager {
     async getCarritoById(cartId) {
         try {
 
-            const carrito = await CartModel.FindById(cartId);
+            const carrito = await CartModel.findById(cartId);
 
             if (!carrito) {
                 throw new Error(`No existe un carrito en el id ${cartId}`);
