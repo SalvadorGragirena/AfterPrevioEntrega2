@@ -23,11 +23,13 @@ app.use("/", viewsRouter);
 
 const server = http.createServer(app); // Crea un servidor HTTP utilizando Express
 
-const io = new socket.Server(server); // Crea una instancia de Socket.IO adjuntando el servidor HTTP
+///const io = new socket.Server(server); // Crea una instancia de Socket.IO adjuntando el servidor HTTP
 
-app.listen(PUERTO, () => {
+const httpServer = app.listen(PUERTO, () => {
     console.log(`Servidor escuchando en el puerto ${PUERTO}`);
 });
+
+const io = new socket.Server(httpServer);
 
 const MessageModel = require("./models/message.model.js");
 
@@ -40,12 +42,11 @@ io.on("connection", (socket) => {
 
     socket.on("message", async  (data) => {
        
-       //Guardo el mensaje
-       await MessageModel.creat(data);
+        await MessageModel.create(data);
 
-       //Obtengo los mensajes de MongoDB y se los paso al cliente:
-        const messages = await MessageModel.find();
-        io.sockets.emit("message", messages);
+      const messages = await MessageModel.find();
+
+       io.emit("messagesLogs", messages);
 
     })
 } )
