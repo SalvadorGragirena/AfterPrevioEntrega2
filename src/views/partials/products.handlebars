@@ -1,0 +1,11 @@
+{{#each products}}
+    <!-- Renderiza cada producto aquí -->
+{{/each}}
+
+<!-- Muestra los enlaces de paginación -->
+{{#if pagination.hasPrevPage}}
+    <a href="?page={{pagination.prevPage}}">Anterior</a>
+{{/if}}
+{{#if pagination.hasNextPage}}
+    <a href="?page={{pagination.nextPage}}">Siguiente</a>
+{{/if}}
